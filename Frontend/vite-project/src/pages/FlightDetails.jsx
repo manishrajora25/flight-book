@@ -1,56 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const airportNames = {
-    // 🇮🇳 India
-    DEL: "Delhi - Indira Gandhi International Airport",
-    BOM: "Mumbai - Chhatrapati Shivaji Maharaj International Airport",
-    BLR: "Bengaluru - Kempegowda International Airport",
-    HYD: "Hyderabad - Rajiv Gandhi International Airport",
-    MAA: "Chennai - Chennai International Airport",
-    CCU: "Kolkata - Netaji Subhash Chandra Bose International Airport",
-    PNQ: "Pune - Lohegaon Airport",
-    JAI: "Jaipur - Jaipur International Airport",
-    AMD: "Ahmedabad - Sardar Vallabhbhai Patel International Airport",
-    GOI: "Goa - Dabolim Airport",
-    IXC: "Chandigarh - Shaheed Bhagat Singh International Airport",
-    LKO: "Lucknow - Chaudhary Charan Singh International Airport",
-    PAT: "Patna - Jay Prakash Narayan Airport",
-    VNS: "Varanasi - Lal Bahadur Shastri Airport",
-    BBI: "Bhubaneswar - Biju Patnaik International Airport",
-    TRV: "Thiruvananthapuram - Trivandrum International Airport",
-    COK: "Kochi - Cochin International Airport",
-    IXB: "Bagdogra - Bagdogra Airport",
-    GAU: "Guwahati - Lokpriya Gopinath Bordoloi International Airport",
-    SXR: "Srinagar - Sheikh ul-Alam International Airport",
-    IXJ: "Jammu - Jammu Airport",
-  
-    // 🌍 International
-    JFK: "New York - John F. Kennedy International Airport (USA)",
-    EWR: "Newark Liberty International Airport (USA)",
-    LAX: "Los Angeles International Airport (USA)",
-    ORD: "Chicago O'Hare International Airport (USA)",
-    LHR: "London - Heathrow Airport (UK)",
-    LGW: "London - Gatwick Airport (UK)",
-    CDG: "Paris - Charles de Gaulle Airport (France)",
-    FRA: "Frankfurt Airport (Germany)",
-    MUC: "Munich Airport (Germany)",
-    AMS: "Amsterdam - Schiphol Airport (Netherlands)",
-    DXB: "Dubai International Airport (UAE)",
-    AUH: "Abu Dhabi International Airport (UAE)",
-    DOH: "Doha - Hamad International Airport (Qatar)",
-    SIN: "Singapore Changi Airport",
-    KUL: "Kuala Lumpur International Airport (Malaysia)",
-    HKG: "Hong Kong International Airport",
-    BKK: "Bangkok - Suvarnabhumi Airport (Thailand)",
-    SYD: "Sydney Kingsford Smith International Airport (Australia)",
-    MEL: "Melbourne Tullamarine International Airport (Australia)",
-    NRT: "Tokyo Narita International Airport (Japan)",
-    HND: "Tokyo Haneda International Airport (Japan)",
-    ICN: "Seoul - Incheon International Airport (South Korea)",
-    PEK: "Beijing Capital International Airport (China)",
-    PVG: "Shanghai Pudong International Airport (China)"
-  };
+
   
 
 const FlightDetails = () => {
