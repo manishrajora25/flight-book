@@ -1,0 +1,72 @@
+// import express from "express";
+// import Amadeus from "amadeus";
+
+// const router = express.Router();
+
+// // Amadeus client
+// const amadeus = new Amadeus({
+//   clientId: process.env.AMADEUS_API_KEY,
+//   clientSecret: process.env.AMADEUS_API_SECRET,
+// });
+
+// // ✅ Flight search example
+// router.get("/flights", async (req, res) => {
+//   try {
+//     const response = await amadeus.shopping.flightOffersSearch.get({
+//       originLocationCode: "DEL", // Delhi
+//       destinationLocationCode: "BOM", // Mumbai
+//       departureDate: "2025-09-10", // koi bhi future date dal sakte ho
+//       adults: "1",
+//     });
+
+//     res.json(response.data);
+//   } catch (err) {
+//     console.error("❌ Amadeus Error:", err);
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
+// export default router;
+
+
+
+
+
+// routes/amadeusRoute.js
+import express from "express";
+import Amadeus from "amadeus";
+
+const router = express.Router();
+
+// GET /api/amadeus/flights - example test endpoint with query params
+router.get("/flights", async (req, res) => {
+  try {
+    // create client at runtime (ensures env are available)
+    const amadeus = new Amadeus({
+      clientId: process.env.AMADEUS_API_KEY,
+      clientSecret: process.env.AMADEUS_API_SECRET,
+    });
+
+    // Query params fallback - you can accept origin/destination/departureDate from req.query
+    const origin = req.query.origin || "DEL";
+    const destination = req.query.destination || "BOM";
+    const departureDate = req.query.departureDate || "2025-09-10";
+
+    const response = await amadeus.shopping.flightOffersSearch.get({
+      originLocationCode: from,
+      destinationLocationCode: to,
+      departureDate,
+      adults: String(passengers),
+      travelClass: travelClass || "ECONOMY",   // 👈 Add this line
+      max: "15",
+    });
+    
+
+    res.json(response.data);
+  } catch (err) {
+    console.error("❌ Amadeus Error:", err?.response?.data || err.message || err);
+    res.status(500).json({ error: err.message || "Amadeus error" });
+  }
+});
+
+export default router;
