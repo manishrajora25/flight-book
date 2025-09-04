@@ -22,6 +22,7 @@ export const searchFlights = async (req, res) => {
       departureDate,
       adults: String(passengers),
       travelClass,
+      currencyCode: "INR",
       max: "15",
     });
 
