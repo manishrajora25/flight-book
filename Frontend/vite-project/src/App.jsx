@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Flights from "./pages/Flights";
 import FlightDetails from "./pages/FlightDetails";
 import SeatSelection from "./pages/SeatSelection";
+import Register from "./pages/Register";
 // import About from "./Pages/About";
 
 const router = createBrowserRouter([
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       { path: "/flights", element: <Flights /> },
       { path: "/flight-details", element: <FlightDetails /> },
       { path: "/SeatSelection", element: <SeatSelection /> },
+      { path: "/register", element: <Register /> },
       
       
     ],
