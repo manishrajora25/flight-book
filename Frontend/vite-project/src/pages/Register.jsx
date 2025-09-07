@@ -23,10 +23,12 @@ const Register = () => {
     try {
       const res = await axios.post(
         "http://localhost:5000/user/register", // ✅ updated API URL
-        formData
+        formData,
+        setFormData("")
       );
       setMessage("✅ Registered Successfully!");
       console.log(res.data);
+      
     } catch (err) {
       setMessage("❌ Registration Failed!");
       console.error(err.response?.data || err.message);
