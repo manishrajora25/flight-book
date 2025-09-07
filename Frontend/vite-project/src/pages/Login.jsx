@@ -1,8 +1,10 @@
 // src/pages/Login.jsx
 import React, { useState, } from "react";
 import Instance from "../Axios.js";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate= useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,6 +27,7 @@ const Login = () => {
         formData
       );
       setMessage("✅ Login Successful!");
+      navigate("/")
       console.log("User Data:", res.data);
 
       // 👉 if you want to save token in localStorage
