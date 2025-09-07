@@ -1,6 +1,6 @@
 // src/pages/Login.jsx
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, } from "react";
+import Instance from "../Axios.js";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
+      const res = await Instance.post(
         "http://localhost:5000/user/login", // ✅ API URL for login
         formData
       );
