@@ -564,7 +564,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Instance from "../Axios"; // axios instance import
+import Instance from "../Axios.js"; // axios instance import
 
 const iataCodes = [
    // 🇮🇳 India

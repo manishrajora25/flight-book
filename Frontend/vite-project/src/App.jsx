@@ -6,6 +6,7 @@ import FlightDetails from "./pages/FlightDetails";
 import SeatSelection from "./pages/SeatSelection";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+
 // import About from "./Pages/About";
 
 const router = createBrowserRouter([
