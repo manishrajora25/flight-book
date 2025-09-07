@@ -3,20 +3,41 @@ import Form from "../models/formModel.js";
 
 export const addForm = async (req, res) => {
   try {
-    const { name, email, phone, from, to, date } = req.body;
+    const {
+      name,
+      email,
+      phone,
+      from,
+      to,
+      departureDate,
+      returnDate,
+      passengers,
+      travelClass,
+    } = req.body;
 
-    const newForm = new Form({ name, email, phone, from, to, date });
+    const newForm = new Form({
+      name,
+      email,
+      phone,
+      from,
+      to,
+      departureDate,
+      returnDate,
+      passengers,
+      travelClass,
+    });
+
     await newForm.save();
 
     res.status(201).json({
       success: true,
-      message: "✈️ Flight booking saved successfully",
+      message: "✈️ Flight search saved successfully",
       data: newForm,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "❌ Failed to save booking",
+      message: "❌ Failed to save search",
       error: error.message,
     });
   }

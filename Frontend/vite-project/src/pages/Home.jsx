@@ -653,20 +653,20 @@ const Home = () => {
     setError("");
 
     try {
-      // ✅ Axios instance ka use
+      // 🔹 Step 1: save in MongoDB
+      await Instance.post("/form/add", formData);
+    
+      // 🔹 Step 2: search flights API
       const res = await Instance.post("/flights/search", formData);
-
+    
       if (!res.data.success) {
         throw new Error(res.data.message || "Search failed");
       }
-
-      // ✅ Navigate to Flights page with results
+    
       navigate("/flights", { state: { flights: res.data.data } });
     } catch (err) {
       setError(err.message);
       console.error("Frontend Error:", err.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -675,6 +675,9 @@ const Home = () => {
     "✈️ Searching best flights...",
     "🛫 Checking nearby airports...",
     "📡 Connecting to airlines...",
+    "🔍 Finalizing your flight options...",
+    "📡 Connecting to airlines...",
+    "🛫 Checking nearby airports...",
     "🔍 Finalizing your flight options...",
   ];
 

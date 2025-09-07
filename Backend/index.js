@@ -47,6 +47,10 @@ import connectDB from "./config/db.js";
 import formRoutes from "./routes/formRoute.js";
 import flightRoutes from "./routes/flightRoute.js";
 import amadeusRoute from "./routes/amadeusRoute.js";
+import userRrouter from "./routes/userRoute.js";
+// import router from "./routes/formRoute.js";
+
+
 
 const app = express();
 
@@ -78,6 +82,8 @@ connectDB();
 app.use("/api/form", formRoutes);
 app.use("/api/flights", flightRoutes);
 app.use("/api/amadeus", amadeusRoute);
+
+app.use("/user", userRrouter);
 
 app.get("/", (req, res) => res.send("API is running 🚀"));
 
