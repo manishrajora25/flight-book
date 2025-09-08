@@ -677,7 +677,9 @@ const Home = () => {
   
   // 🔹 Step by step loading messages
   const loadingMessages = [
-   
+    "✈️ Searching best flights...",
+    "🛫 Checking nearby airports...",
+    "📡 Connecting to airlines...",
     "🔍 Finalizing your flight options...",
     "✈️ Searching best flights...",
     "📡 Connecting to airlines...",
