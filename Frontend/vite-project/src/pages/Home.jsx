@@ -653,11 +653,13 @@ const Home = () => {
     setError("");
   
     try {
-      // 🔹 Step 1: save in MongoDB
-      await Instance.post("/form/add", formData);
+      // 🔹 Step 1: save in MongoDB (cookies ke sath)
+      await Instance.post("/form/add", formData,
+         { withCredentials: true });
   
-      // 🔹 Step 2: search flights API
-      const res = await Instance.post("/flights/search", formData);
+      // 🔹 Step 2: search flights API (cookies ke sath)
+      const res = await Instance.post("/flights/search", formData,
+         { withCredentials: true });
   
       if (!res.data.success) {
         throw new Error(res.data.message || "Search failed");
@@ -672,12 +674,14 @@ const Home = () => {
     }
   };
   
+  
   // 🔹 Step by step loading messages
   const loadingMessages = [
     "✈️ Searching best flights...",
     "🛫 Checking nearby airports...",
     "📡 Connecting to airlines...",
     "🔍 Finalizing your flight options...",
+    "✈️ Searching best flights...",
     "📡 Connecting to airlines...",
     "🛫 Checking nearby airports...",
     "🔍 Finalizing your flight options...",
