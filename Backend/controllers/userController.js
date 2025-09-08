@@ -48,23 +48,24 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid Credentials" });
     }
 
+    // 🔹 Correct env variable name
     const userToken = jwt.sign(
       {
         id: user._id,
         email: user.email,
       },
-      process.env.jWT_SECRET,
+      process.env.JWT_SECRET,   // ✅ FIXED (pehle jWT_SECRET tha)
       { expiresIn: "1h" }
     );
 
     res
       .cookie("userToken", userToken, {
         httpOnly: true,
-        secure: true, // true if you're using HTTPS in production
-        sameSite: "strict",
-        maxAge: 60 * 60 * 1000, // ✅ 1 hour in milliseconds
+        secure: process.env.NODE_ENV === "production", // ✅ localhost ke liye false hoga
+        sameSite: "lax",
+        maxAge: 60 * 60 * 1000, // 1 hour
       })
-      .send({
+      .json({
         message: "User Login Successfully",
         user: {
           id: user._id,
@@ -76,6 +77,7 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
+
 
 export const logoutUser = async (req, res) => {
   try {

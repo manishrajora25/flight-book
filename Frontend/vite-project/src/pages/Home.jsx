@@ -651,25 +651,27 @@ const Home = () => {
     setLoading(true);
     setLoadingStep(0);
     setError("");
-
+  
     try {
       // 🔹 Step 1: save in MongoDB
       await Instance.post("/form/add", formData);
-    
+  
       // 🔹 Step 2: search flights API
       const res = await Instance.post("/flights/search", formData);
-    
+  
       if (!res.data.success) {
         throw new Error(res.data.message || "Search failed");
       }
-    
+  
       navigate("/flights", { state: { flights: res.data.data } });
     } catch (err) {
       setError(err.message);
-      console.error("Frontend Error:", err.message);
+      console.error("Frontend Error:", err.response?.data || err.message);
+    } finally {
+      setLoading(false);
     }
   };
-
+  
   // 🔹 Step by step loading messages
   const loadingMessages = [
     "✈️ Searching best flights...",

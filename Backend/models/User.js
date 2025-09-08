@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    // required: true,
+    required: true,
     // unique: true,
   },
 
@@ -78,4 +78,30 @@ export default User;
 
 // const User = mongoose.model("User", userSchema);
 
+// export default User;
+
+
+
+
+
+
+
+
+
+
+// // models/User.js (add bookings)
+// import mongoose from "mongoose";
+
+// const userSchema = new mongoose.Schema({
+//   name: { type: String,  },
+//   email: { type: String, required: true, unique: true },
+//   password: { type: String, required: true, minlength: 6 },
+//   image: { type: String, default: "" },
+//   role: { type: String, default: "User", enum: ["User", "admin"] },
+//   bookings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Form" }], // NEW
+// }, {
+//   timestamps: true,
+// });
+
+// const User = mongoose.model("User", userSchema);
 // export default User;

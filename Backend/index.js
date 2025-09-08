@@ -43,6 +43,7 @@ import "dotenv/config.js";
 import dotenv from "dotenv";          
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import formRoutes from "./routes/formRoute.js";
 import flightRoutes from "./routes/flightRoute.js";
@@ -60,6 +61,7 @@ dotenv.config();
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   "http://localhost:5173", 
+  
 ];
 
 const corsOptions = {

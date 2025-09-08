@@ -1,12 +1,10 @@
 import Form from "../models/formModel.js";
 
 
+
 export const addForm = async (req, res) => {
   try {
     const {
-      name,
-      email,
-      phone,
       from,
       to,
       departureDate,
@@ -15,10 +13,13 @@ export const addForm = async (req, res) => {
       travelClass,
     } = req.body;
 
+    // 🟢 JWT se user nikal lo (req.user)
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(401).json({ message: "Unauthorized" });
+
+    // Booking create karo
     const newForm = new Form({
-      name,
-      email,
-      phone,
+      user: user._id,   // ✅ user ke saath link
       from,
       to,
       departureDate,
@@ -31,13 +32,13 @@ export const addForm = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: "✈️ Flight search saved successfully",
+      message: "✈️ Flight booked successfully",
       data: newForm,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "❌ Failed to save search",
+      message: "❌ Failed to save booking",
       error: error.message,
     });
   }
