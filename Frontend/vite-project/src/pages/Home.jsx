@@ -682,7 +682,9 @@ const Home = () => {
     "📡 Connecting to airlines...",
     "🔍 Finalizing your flight options...",
     "✈️ Searching best flights...",
-   
+    "📡 Connecting to airlines...",
+    "🛫 Checking nearby airports...",
+    "🔍 Finalizing your flight options...",
   ];
 
   useEffect(() => {
