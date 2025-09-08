@@ -687,7 +687,20 @@ const Home = () => {
     "🔍 Finalizing your flight options...",
   ];
 
- 
+  useEffect(() => {
+    if (loading) {
+      setLoadingStep(0);
+      const interval = setInterval(() => {
+        setLoadingStep((prev) => {
+          if (prev < loadingMessages.length - 1) {
+            return prev + 1;
+          }
+          return prev;
+        });
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [loading]);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 flex flex-col items-center justify-center px-4">
