@@ -706,9 +706,7 @@ const Home = () => {
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 flex flex-col items-center justify-center px-4">
       {/* Search Form */}
       <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-3xl mb-8">
-        <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
-          ✈️ Search Flights
-        </h1>
+      
 
         <form
           onSubmit={handleSubmit}
