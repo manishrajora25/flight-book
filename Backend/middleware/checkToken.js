@@ -35,6 +35,9 @@ export const checkAdmin = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({ message: "No Token Found" });
     }
+console.log(req);
+
+console.log(token);
 
     const decoded = jwt.verify(token, process.env.jWT_SECRET);
     req.user = await User.findById(decoded.id).select("-password");
