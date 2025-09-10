@@ -41,7 +41,7 @@ const router = express.Router();
 
 router.get("/flights", async (req, res) => {
   try {
-    // create client at runtime (ensures env are available)
+   
     const amadeus = new Amadeus({
       clientId: process.env.AMADEUS_API_KEY,
       clientSecret: process.env.AMADEUS_API_SECRET,
