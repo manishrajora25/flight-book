@@ -48,20 +48,20 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid Credentials" });
     }
 
-    // 🔹 Correct env variable name
+   
     const userToken = jwt.sign(
       {
         id: user._id,
         email: user.email,
       },
-      process.env.JWT_SECRET,   // ✅ FIXED (pehle jWT_SECRET tha)
+      process.env.JWT_SECRET,   
       { expiresIn: "1h" }
     );
 
     res
       .cookie("userToken", userToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // ✅ localhost ke liye false hoga
+        secure: process.env.NODE_ENV === "production", 
         sameSite: "lax",
         maxAge: 60 * 60 * 1000, // 1 hour
       })
