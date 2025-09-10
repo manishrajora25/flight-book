@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 
 const formSchema = new mongoose.Schema(
   {
-    name: { type: String },  // optional if search me nahi hoga
+    name: { type: String }, 
     email: { type: String },
     phone: { type: String },
     from: { type: String, required: true },
