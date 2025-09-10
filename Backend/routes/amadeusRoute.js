@@ -47,7 +47,7 @@ router.get("/flights", async (req, res) => {
       clientSecret: process.env.AMADEUS_API_SECRET,
     });
 
-    // Query params fallback - you can accept origin/destination/departureDate from req.query
+   
     const origin = req.query.origin || "DEL";
     const destination = req.query.destination || "BOM";
     const departureDate = req.query.departureDate || "2025-09-10";
@@ -57,7 +57,7 @@ router.get("/flights", async (req, res) => {
       destinationLocationCode: to,
       departureDate,
       adults: String(passengers),
-      travelClass: travelClass || "ECONOMY",   // 👈 Add this line
+      travelClass: travelClass || "ECONOMY",   
       max: "15",
     });
     
