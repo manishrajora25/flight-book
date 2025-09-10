@@ -32,13 +32,13 @@
 
 
 
-// routes/amadeusRoute.js
+
 import express from "express";
 import Amadeus from "amadeus";
 
 const router = express.Router();
 
-// GET /api/amadeus/flights - example test endpoint with query params
+
 router.get("/flights", async (req, res) => {
   try {
     // create client at runtime (ensures env are available)
