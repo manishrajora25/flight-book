@@ -1,6 +1,6 @@
 
 
-// routes/flightRoute.js
+
 import express from "express";
 import { getflight, searchFlights } from "../controllers/flightController.js";
 
