@@ -11,6 +11,6 @@ import { checkAdmin } from "../middleware/checkToken.js";
 const router = express.Router();
 
 router.post("/add", checkAdmin, addForm);
-router.get("/", checkAdmin, getForms);    // ✅ only logged in user can see his bookings
+router.get("/", checkAdmin, getForms);   
 
 export default router;
