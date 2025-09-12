@@ -1,4 +1,5 @@
 import Form from "../models/formModel.js";
+import User from "../models/User.js"; 
 
 
 
@@ -13,13 +14,12 @@ export const addForm = async (req, res) => {
       travelClass,
     } = req.body;
 
-    // 🟢 JWT se user nikal lo (req.user)
+    // Ab yaha req.user available hai ✅
     const user = await User.findById(req.user.id);
     if (!user) return res.status(401).json({ message: "Unauthorized" });
 
-    // Booking create karo
     const newForm = new Form({
-      user: user._id,   // ✅ user ke saath link
+      user: user._id,
       from,
       to,
       departureDate,

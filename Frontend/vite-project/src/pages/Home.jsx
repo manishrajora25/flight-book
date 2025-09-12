@@ -660,6 +660,8 @@ const Home = () => {
       // 🔹 Step 2: search flights API (cookies ke sath)
       const res = await Instance.post("/flights/search", formData,
          { withCredentials: true });
+         console.log(res);
+         
   
       if (!res.data.success) {
         throw new Error(res.data.message || "Search failed");
@@ -669,6 +671,7 @@ const Home = () => {
     } catch (err) {
       setError(err.message);
       console.error("Frontend Error:", err.response?.data || err.message);
+      navigate("/login")
     } finally {
       setLoading(false);
     }
