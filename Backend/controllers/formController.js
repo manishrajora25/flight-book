@@ -20,6 +20,7 @@ export const addForm = async (req, res) => {
 
     const newForm = new Form({
       user: user._id,
+      email,
       from,
       to,
       departureDate,
