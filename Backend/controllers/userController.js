@@ -4,10 +4,7 @@ import bcrypt from "bcrypt";
 
 export const registerUser = async (req, res) => {
   try {
-    const { name, email, password} = req.body;
-    const imageUrl = req.file ? req.file.path : "";
-    console.log("BODY:", req.body);
-    console.log("FILE:", req.file);
+    const { name, email, password } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -15,7 +12,6 @@ export const registerUser = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
 
     const newUser = new User({
       name,
@@ -25,70 +21,67 @@ export const registerUser = async (req, res) => {
 
     await newUser.save();
 
-    res
-      .status(201)
-      .json({ message: "User registered successfully", user: newUser });
+    res.status(201).json({
+      message: "User registered successfully",
+    });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Registration failed", error: error.message });
+    res.status(500).json({
+      message: "Registration failed",
+      error: error.message,
+    });
   }
 };
 
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(email, password);
 
     const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid Credentials" });
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
-   
     const userToken = jwt.sign(
-      {
-        id: user._id,
-        email: user.email,
-      },
-      process.env.JWT_SECRET,   
+      { id: user._id },
+      process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
     res
       .cookie("userToken", userToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", 
+        secure: process.env.NODE_ENV === "production",
         sameSite: "lax",
-        maxAge: 60 * 60 * 1000, 
+        maxAge: 60 * 60 * 1000,
       })
+      .status(200)
       .json({
-        message: "User Login Successfully",
+        message: "User login successful",
         user: {
           id: user._id,
           email: user.email,
         },
       });
   } catch (err) {
-    console.error("Login error:", err.message);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: "Server error" });
   }
 };
-
 
 export const logoutUser = async (req, res) => {
   try {
     res.clearCookie("userToken", {
       httpOnly: true,
-      secure: true,
-      sameSite: "strict",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
     });
 
     res.status(200).json({ message: "Logout successful" });
   } catch (error) {
-    res.status(500).json({ error: "Logout failed" });
+    res.status(500).json({ message: "Logout failed" });
   }
 };

@@ -23,22 +23,21 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await Instance.post(
-        "http://localhost:5000/user/login", // ✅ API URL for login
-        formData
+        "http://localhost:5000/user/login",
+        formData,
+        { withCredentials: true } // 🔥 IMPORTANT
       );
+  
       setMessage("✅ Login Successful!");
-      navigate("/")
       console.log("User Data:", res.data);
-
-      // 👉 if you want to save token in localStorage
-      if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
-      }
+  
+      navigate("/");
     } catch (err) {
       setMessage("❌ Invalid Email or Password!");
       console.error(err.response?.data || err.message);
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

@@ -6,6 +6,8 @@ import User from "../models/User.js";
 export const addForm = async (req, res) => {
   try {
     const {
+      name,
+      phone,
       from,
       to,
       departureDate,
@@ -14,13 +16,11 @@ export const addForm = async (req, res) => {
       travelClass,
     } = req.body;
 
-    // Ab yaha req.user available hai ✅
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).json({ message: "Unauthorized" });
-
-    const newForm = new Form({
-      user: user._id,
-      email,
+    const form = await Form.create({
+      user: req.user._id,          // logged-in user
+      name,
+      email: req.user.email,       // ✅ FIX HERE
+      phone,
       from,
       to,
       departureDate,
@@ -29,21 +29,20 @@ export const addForm = async (req, res) => {
       travelClass,
     });
 
-    await newForm.save();
-
     res.status(201).json({
       success: true,
-      message: "✈️ Flight booked successfully",
-      data: newForm,
+      message: "Booking saved successfully",
+      form,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "❌ Failed to save booking",
+      message: "Failed to save booking",
       error: error.message,
     });
   }
 };
+
 
 
 export const getForms = async (req, res) => {
